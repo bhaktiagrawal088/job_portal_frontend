@@ -7,7 +7,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "react-dom/client": "react-dom", // Add this line
 
     },
   },
