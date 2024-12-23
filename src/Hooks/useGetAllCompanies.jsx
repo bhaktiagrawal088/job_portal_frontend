@@ -9,6 +9,19 @@ const useGetAllCompanies = () => {
   useEffect(() => {
     const fetchCompanies = async () => {
         try {
+            const token = localStorage.getItem('authToken'); // Adjust if token is stored elsewhere
+        if (!token) {
+          console.error('Authentication token is missing');
+          return;
+        }
+
+        // Configuring headers for the request
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true, // Include credentials for cross-origin requests if needed
+        };
             const res = await axios.get(`${COMPANY_API_END_POINT}/get`, {withCredentials:true})
             if(res.data.success){
                 dispatch(setCompanies(res.data.companies))
